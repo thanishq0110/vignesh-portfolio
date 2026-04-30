@@ -139,7 +139,7 @@ const Projects = ({ inWorksScene }) => {
           <div className="circular-gallery-header">
             <h2>Gallery</h2>
           </div>
-          <CircularGallery items={galleryItems} radius={isMobile ? 400 : 750} />
+          <CircularGallery items={galleryItems} radius={isMobile ? 400 : 750} isMobile={isMobile} />
         </div>
       </div>
     </section>

@@ -32,7 +32,7 @@ const VolumeOffIcon = () => (
   </svg>
 );
 
-const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
+const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04, isMobile = false }) => {
   const ringRef = useRef(null);
   const cardsRef = useRef([]);
   const rotationRef = useRef(0);
@@ -91,6 +91,17 @@ const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
 
   // 3D rotation logic + mouse drag
   useEffect(() => {
+    if (isMobile) {
+      if (ringRef.current) ringRef.current.style.transform = '';
+      cardsRef.current.forEach((card) => {
+        if (card) {
+          card.style.transform = '';
+          card.style.opacity = '1';
+        }
+      });
+      return;
+    }
+
     const isDraggingRef = { current: false };
     const dragStartXRef = { current: 0 };
     const dragStartRotRef = { current: 0 };
@@ -99,6 +110,7 @@ const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
     const lastTimeRef = { current: 0 };
 
     const updateDOM = (rot) => {
+      if (isMobile) return;
       if (ringRef.current) {
         ringRef.current.style.transform = `rotateY(${rot}deg)`;
       }
@@ -306,7 +318,7 @@ const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
                 key={item.video}
                 ref={(el) => (cardsRef.current[i] = el)}
                 className="circular-gallery-card"
-                style={{
+                style={isMobile ? {} : {
                   transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
                   willChange: 'opacity',
                 }}

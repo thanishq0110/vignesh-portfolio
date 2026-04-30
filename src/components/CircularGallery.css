@@ -219,22 +219,44 @@
 /* ── Mobile Responsive ── */
 @media (max-width: 768px) {
   .circular-gallery-section {
-    height: 400vh;
+    height: auto;
+    padding: 4rem 0;
   }
 
-  .circular-gallery-card {
-    width: 280px;
-    height: 158px;
-    margin-left: -140px;
-    margin-top: -79px;
-  }
-
-  .circular-gallery-scene {
-    perspective: 1800px;
+  .circular-gallery-sticky {
+    position: relative;
+    height: auto;
   }
 
   .circular-gallery-header {
-    top: 1.5rem;
+    position: relative;
+    top: 0;
+    margin-bottom: 3rem;
+  }
+
+  .circular-gallery-scene {
+    perspective: none;
+    height: auto;
+    padding: 0 1.5rem;
+  }
+
+  .circular-gallery-ring {
+    transform-style: flat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .circular-gallery-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .circular-gallery-card-info {
