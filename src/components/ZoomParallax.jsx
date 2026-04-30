@@ -50,13 +50,18 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
     { top: '22.5vh',  left: '25vw',    height: '15vh', width: '15vw' },
   ];
 
-  // On mobile, the cleanest and most premium look is a single central video zooming in,
-  // without the distraction of cluttered surrounding images.
-  const mobilePositions = [];
+  const mobilePositions = [
+    { top: '-28vh',  left: '-22vw',  height: '12vh', width: '25vw' },
+    { top: '-20vh',  left: '28vw',   height: '10vh', width: '20vw' },
+    { top: '-2vh',   left: '-32vw',  height: '15vh', width: '22vw' },
+    { top: '10vh',   left: '30vw',   height: '12vh', width: '24vw' },
+    { top: '25vh',   left: '-20vw',  height: '10vh', width: '20vw' },
+    { top: '32vh',   left: '22vw',   height: '14vh', width: '26vw' },
+  ];
 
   const positions = isMobile ? mobilePositions : desktopPositions;
-  const visibleImages = isMobile ? [] : images.slice(0, 6);
-  const thumbnailWidth = isMobile ? '85vw' : '25vw';
+  const visibleImages = images.slice(0, 6); // Keep all photos
+  const thumbnailWidth = isMobile ? '65vw' : '25vw';
 
   const enterFullscreen = () => {
     document.body.style.overflow = 'hidden';
@@ -371,6 +376,7 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
                   pointerEvents: 'none',
                   willChange: 'transform',
                   transform: 'translateZ(0)',
+                  zIndex: 10, // Keep photos on top of the center video
                 }}
               >
                 <div
@@ -389,7 +395,7 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                      objectFit: isMobile ? 'contain' : 'cover', // Don't crop on mobile
                       pointerEvents: 'auto',
                       filter: 'grayscale(100%) contrast(1.1)',
                       transition: 'filter 0.5s ease',
