@@ -8,7 +8,7 @@ const sections = [
   { id: 'contact', label: 'Contact' },
 ];
 
-export function Minimap() {
+export function Minimap({ inWorksScene = false }) {
   const [activeSection, setActiveSection] = useState('top');
 
   useEffect(() => {
@@ -51,7 +51,14 @@ export function Minimap() {
   };
 
   return (
-    <div className="minimap-container">
+    <div
+      className="minimap-container"
+      style={{
+        opacity: inWorksScene ? 0 : 1,
+        pointerEvents: inWorksScene ? 'none' : 'auto',
+        transition: 'opacity 0.8s ease',
+      }}
+    >
       {sections.map(({ id, label }) => (
         <a
           key={id}

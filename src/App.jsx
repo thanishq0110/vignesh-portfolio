@@ -9,22 +9,24 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import useWorksScene from './hooks/useWorksScene';
+import './index.css';
 
 function App() {
+  const inWorksScene = useWorksScene();
+
   return (
     <div className="app-container">
       <Preloader />
       <SmokeBackground smokeColor="#aaaaaa" />
       <TubesCursorEffect color="#ffffff" />
-      <Minimap />
-      <Navbar />
+      <Minimap inWorksScene={inWorksScene} />
+      <Navbar inWorksScene={inWorksScene} />
       <main>
         <Hero />
         <WaveDivider />
         <About />
-        <WaveDivider />
-        <Projects />
-        <WaveDivider />
+        <Projects inWorksScene={inWorksScene} />
         <Contact />
       </main>
       <Footer />

@@ -6,22 +6,52 @@ export function Preloader() {
   const [complete, setComplete] = useState(false);
   const [unmount, setUnmount] = useState(false);
   const [step, setStep] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // 1. Initial State
+    // Step animations
     const t1 = setTimeout(() => setStep(1), 800);
-    // 2. Compiling State
     const t2 = setTimeout(() => setStep(2), 1600);
-    // 3. Fade Out sequence
-    const t3 = setTimeout(() => setComplete(true), 2500);
-    // 4. Safely Unmount from DOM completely
-    const t4 = setTimeout(() => setUnmount(true), 3300);
+
+    // Simulate loading progress
+    let current = 0;
+    const progressInterval = setInterval(() => {
+      current += Math.random() * 15 + 5;
+      if (current >= 100) {
+        current = 100;
+        clearInterval(progressInterval);
+      }
+      setProgress(current);
+    }, 200);
+
+    // Wait for window load event (all assets ready)
+    const handleLoad = () => {
+      setProgress(100);
+      clearInterval(progressInterval);
+      setTimeout(() => setComplete(true), 400);
+      setTimeout(() => setUnmount(true), 1200);
+    };
+
+    if (document.readyState === 'complete') {
+      // Already loaded
+      setTimeout(handleLoad, 2200);
+    } else {
+      window.addEventListener('load', handleLoad);
+      // Fallback: force reveal after 4s
+      const fallback = setTimeout(handleLoad, 4000);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearInterval(progressInterval);
+        clearTimeout(fallback);
+        window.removeEventListener('load', handleLoad);
+      };
+    }
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
-      clearTimeout(t4);
+      clearInterval(progressInterval);
     };
   }, []);
 
@@ -46,7 +76,9 @@ export function Preloader() {
           </TextScramble>
         )}
       </div>
-      <div className="preloader-loader"></div>
+      <div className="preloader-loader">
+        <div className="preloader-loader-fill" style={{ width: `${Math.min(progress, 100)}%` }} />
+      </div>
     </div>
   );
 }

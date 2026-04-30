@@ -1,100 +1,35 @@
 .projects-section {
   position: relative;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-.project-card {
+/* Section header positioned above the parallax */
+.works-header {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-color);
-  padding: 3rem;
-  transition: transform 0.4s ease, background 0.4s ease;
-  overflow: hidden;
+  z-index: 10;
+  text-align: center;
+  padding: 100px 5% 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+.works-title {
+  margin-bottom: 0.5rem;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-content {
-  position: relative;
-  z-index: 2;
-}
-
-.project-category {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-secondary);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.project-title {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-.project-desc {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #888;
-}
-
-.project-link {
+.works-subtitle {
   font-size: 0.85rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.arrow {
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .arrow {
-  transform: translateX(5px);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    padding: 1.5rem;
-  }
-
-  .project-title {
-    font-size: 1.5rem;
+  .works-header {
+    padding: 80px 1rem 2rem;
   }
 }

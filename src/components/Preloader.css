@@ -15,7 +15,7 @@
 
 .preloader.fade-out {
   opacity: 0;
-  transform: scale(1.05); /* Slight scale up as it fades out to reveal the background */
+  transform: scale(1.05);
   pointer-events: none;
 }
 
@@ -36,20 +36,9 @@
   overflow: hidden;
 }
 
-.preloader-loader::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+.preloader-loader-fill {
   height: 100%;
-  width: 40%;
   background-color: var(--text-primary);
-  animation: load 2.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes load {
-  0% { transform: translateX(-100%); width: 0%; box-shadow: 0 0 10px rgba(255,255,255,0); }
-  30% { width: 30%; }
-  70% { width: 60%; box-shadow: 0 0 15px rgba(255,255,255,0.8); }
-  100% { transform: translateX(250%); width: 100%; }
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

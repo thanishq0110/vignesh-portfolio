@@ -1,6 +1,6 @@
 import React from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
-import Photo from '../assets/Photo.png';
+import Photo from '../assets/Photo.jpg';
 import './About.css';
 
 const About = () => {

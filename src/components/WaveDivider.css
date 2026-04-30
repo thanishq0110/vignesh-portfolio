@@ -41,3 +41,14 @@
 .wave-divider-wrapper:hover .wave-divider-path {
   stroke: rgba(255, 255, 255, 0.8);
 }
+
+@media (max-width: 768px) {
+  .wave-divider-wrapper {
+    width: 90vw;
+  }
+
+  .wave-divider-hitbox:hover {
+    top: -1.25rem;
+    height: 2.5rem;
+  }
+}

@@ -1,59 +1,136 @@
-import React from 'react';
-import useScrollReveal from '../hooks/useScrollReveal';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import ZoomParallax from './ZoomParallax';
+import CircularGallery from './CircularGallery';
+import videoThumbnail from '../assets/video-thumbnail.jpg';
+import imgBat from '../assets/work-bat.jpg';
+import imgBlackhole from '../assets/work-blackhole.jpg';
+import imgFantasyValley from '../assets/work-fantasy-valley.jpg';
+import imgLandscape1 from '../assets/work-landscape-1.jpg';
+import imgLandscape2 from '../assets/work-landscape-2.jpg';
+import imgLandscape3 from '../assets/work-landscape-3.jpg';
 import './Projects.css';
 
-const projects = [
+const surroundingImages = [
   {
-    id: 1,
-    title: 'Cyberpunk Alley',
-    category: 'Environment Design',
-    description: 'A fully playable dystopian alleyway built in Unreal Engine 5. Featuring Lumen global illumination and complex material shaders.',
-    link: '#'
+    src: imgBlackhole,
+    alt: 'Blackhole VFX',
   },
   {
-    id: 2,
-    title: 'Ruins of Eldoria',
-    category: 'Level Design & Lighting',
-    description: 'Fantasy ruins environment focusing on cinematic lighting, dense foliage, and vertical traversal mechanics.',
-    link: '#'
+    src: imgBat,
+    alt: 'Bat Character Design',
   },
   {
-    id: 3,
-    title: 'Project Zero',
-    category: 'Game Development',
-    description: 'A sci-fi action prototype. Developed core mechanics using Blueprints, including advanced AI behaviors and combat systems.',
-    link: '#'
+    src: imgFantasyValley,
+    alt: 'Fantasy Valley Environment',
   },
   {
-    id: 4,
-    title: 'Mecha Intro Cinematic',
-    category: 'Animation',
-    description: 'A short 3D cinematic sequence animated entirely in Sequencer, utilizing advanced motion capture retargeting.',
-    link: '#'
-  }
+    src: imgLandscape1,
+    alt: 'High Res Landscape 1',
+  },
+  {
+    src: imgLandscape2,
+    alt: 'High Res Landscape 2',
+  },
+  {
+    src: imgLandscape3,
+    alt: 'High Res Landscape 3',
+  },
 ];
 
-const Projects = () => {
-  const [ref, isVisible] = useScrollReveal();
+const galleryItems = [
+  {
+    title: 'Hidden Temple',
+    subtitle: 'Environment Design',
+    video: '/gallery/reel-01.mp4',
+  },
+  {
+    title: 'Horror Story',
+    subtitle: 'Cinematic Sequence',
+    video: '/gallery/reel-02.mp4',
+  },
+  {
+    title: 'Relaxing',
+    subtitle: 'Ambient Scene',
+    video: '/gallery/reel-03.mp4',
+  },
+  {
+    title: 'Last of Us',
+    subtitle: 'Game Environment',
+    video: '/gallery/reel-04.mp4',
+  },
+  {
+    title: 'Blade Runner 2045',
+    subtitle: 'Sci-Fi Environment',
+    video: '/gallery/reel-05.mp4',
+  },
+  {
+    title: 'Spiderman',
+    subtitle: 'Character Animation',
+    video: '/gallery/reel-06.mp4',
+  },
+  {
+    title: 'Batman',
+    subtitle: 'Dark Knight Scene',
+    video: '/gallery/reel-07.mp4',
+  },
+  {
+    title: 'Forest',
+    subtitle: 'Environment Design',
+    video: '/gallery/reel-08.mp4',
+  },
+  {
+    title: 'House',
+    subtitle: 'Architecture Visualization',
+    video: '/gallery/reel-09.mp4',
+  },
+];
+
+const Projects = ({ inWorksScene }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <section id="projects" className="projects-section" ref={ref}>
-      <div className={`reveal-container ${isVisible ? 'visible' : ''}`}>
-        <h2 className="section-title">02. Selected Works</h2>
-        
-        <div className="projects-grid">
-        {projects.map((project) => (
-          <div key={project.id} className="project-card">
-            <div className="project-content">
-              <span className="project-category">{project.category}</span>
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-desc">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                View Project <span className="arrow">→</span>
-              </a>
-            </div>
+    <section
+      id="projects"
+      className="projects-section"
+      style={{ padding: 0, maxWidth: '100%', margin: 0, position: 'relative' }}
+    >
+      {/* Section header */}
+      <motion.div
+        className="works-header"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{
+          opacity: inWorksScene ? 1 : 0,
+          y: inWorksScene ? 0 : 40,
+        }}
+        transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <h2 className="section-title works-title">02. Selected Works</h2>
+        <p className="works-subtitle">{isMobile ? 'Tap to explore' : 'Scroll to explore'}</p>
+      </motion.div>
+
+      {/* Zoom Parallax gallery */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: inWorksScene ? 1 : 0 }}
+        transition={{ duration: 1.0, delay: 0.5, ease: 'easeInOut' }}
+      >
+        <ZoomParallax videoSrc="/portfolio-showcase.mp4" thumbnailSrc={videoThumbnail} images={surroundingImages} />
+      </motion.div>
+
+      {/* Circular Gallery — always present, scroll down to see it */}
+      <div className="circular-gallery-section">
+        <div className="circular-gallery-sticky">
+          <div className="circular-gallery-header">
+            <h2>Gallery</h2>
           </div>
-        ))}
+          <CircularGallery items={galleryItems} radius={isMobile ? 400 : 750} />
         </div>
       </div>
     </section>

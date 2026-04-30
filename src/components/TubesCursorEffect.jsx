@@ -23,6 +23,7 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
 
     let mouseMoved = false;
     let reqId = null;
+    let isCursorPaused = false;
 
     // Initialize off-screen so it's not a visible dot
     const pointer = {
@@ -71,8 +72,17 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
       canvas.height = window.innerHeight;
     }
 
+    const handleMouseOver = (e) => {
+      if (e.target.closest('[data-no-cursor]')) isCursorPaused = true;
+    };
+    const handleMouseOut = (e) => {
+      if (e.target.closest('[data-no-cursor]')) isCursorPaused = false;
+    };
+
     window.addEventListener('click', handleClick);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mouseout', handleMouseOut);
     window.addEventListener('resize', setupCanvas);
 
     setupCanvas();
@@ -82,7 +92,8 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Do not draw anything until the user has actually moved their mouse
-      if (!mouseMoved) {
+      // or when cursor is paused over a no-cursor element
+      if (!mouseMoved || isCursorPaused) {
         reqId = window.requestAnimationFrame(update);
         return;
       }
@@ -125,6 +136,8 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
     return () => {
       window.removeEventListener('click', handleClick);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mouseout', handleMouseOut);
       window.removeEventListener('resize', setupCanvas);
       if (reqId) cancelAnimationFrame(reqId);
     };

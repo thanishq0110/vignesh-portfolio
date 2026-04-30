@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ inWorksScene = false }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar"
+      style={{
+        opacity: inWorksScene ? 0 : 1,
+        pointerEvents: inWorksScene ? 'none' : 'auto',
+        transition: 'opacity 0.8s ease',
+      }}
+    >
       <div className="navbar-container">
         <div className="logo">
           <a href="#top">VS.</a>

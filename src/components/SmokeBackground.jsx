@@ -66,7 +66,7 @@ class SmokeRenderer {
   }
 
   updateScale() {
-    const dpr = Math.max(1, window.devicePixelRatio);
+    const dpr = 1; // Cap at 1x — smoke is soft, full retina resolution is unnecessary
     this.canvas.width = window.innerWidth * dpr;
     this.canvas.height = window.innerHeight * dpr;
     this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);

@@ -82,6 +82,15 @@
   animation: slideUpFade 1s 3.6s ease forwards;
 }
 
+.hero-social {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: slideUpFade 1s 3.6s ease forwards;
+}
+
 .btn {
   padding: 1rem 2.5rem;
   font-size: 0.9rem;
