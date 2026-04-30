@@ -51,12 +51,12 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
   ];
 
   const mobilePositions = [
-    { top: '-28vh',  left: '-22vw',  height: '12vh', width: '25vw' },
-    { top: '-20vh',  left: '28vw',   height: '10vh', width: '20vw' },
-    { top: '-2vh',   left: '-32vw',  height: '15vh', width: '22vw' },
-    { top: '10vh',   left: '30vw',   height: '12vh', width: '24vw' },
-    { top: '25vh',   left: '-20vw',  height: '10vh', width: '20vw' },
-    { top: '32vh',   left: '22vw',   height: '14vh', width: '26vw' },
+    { top: '-30vh',  left: '-24vw',  height: '18vh', width: '38vw' },
+    { top: '-22vh',  left: '30vw',   height: '15vh', width: '30vw' },
+    { top: '-2vh',   left: '-35vw',  height: '22vh', width: '33vw' },
+    { top: '10vh',   left: '32vw',   height: '18vh', width: '36vw' },
+    { top: '25vh',   left: '-22vw',  height: '15vh', width: '30vw' },
+    { top: '34vh',   left: '24vw',   height: '20vh', width: '38vw' },
   ];
 
   const positions = isMobile ? mobilePositions : desktopPositions;
