@@ -175,8 +175,37 @@ const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
     const handleMouseUp = () => handleEnd();
 
     // Touch handlers
-    const handleTouchStart = (e) => handleStart(e.touches[0].clientX);
-    const handleTouchMove = (e) => { handleMove(e.touches[0].clientX); e.preventDefault(); };
+    let touchStartY = 0;
+    let isScrollIntent = false;
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+      isScrollIntent = false;
+      handleStart(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isDraggingRef.current) return;
+
+      const touchX = e.touches[0].clientX;
+      const touchY = e.touches[0].clientY;
+
+      const dx = Math.abs(touchX - dragStartXRef.current);
+      const dy = Math.abs(touchY - touchStartY);
+
+      // If vertical movement is greater than horizontal, it's a page scroll
+      if (!isScrollIntent && dy > dx && dy > 5) {
+        isScrollIntent = true;
+        isDraggingRef.current = false; // Cancel carousel drag
+        return;
+      }
+
+      if (!isScrollIntent) {
+        if (e.cancelable) e.preventDefault();
+        handleMove(touchX);
+      }
+    };
+
     const handleTouchEnd = () => handleEnd();
 
     const autoRotate = () => {
