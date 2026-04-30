@@ -51,11 +51,11 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
   ];
 
   const mobilePositions = [
-    { top: '-30vh',  left: '-24vw',  height: '18vh', width: '38vw' },
+    { top: '-32vh',  left: '-28vw',  height: '24vh', width: '46vw' }, // Blackhole (larger)
     { top: '-22vh',  left: '30vw',   height: '15vh', width: '30vw' },
     { top: '-2vh',   left: '-35vw',  height: '22vh', width: '33vw' },
     { top: '10vh',   left: '32vw',   height: '18vh', width: '36vw' },
-    { top: '25vh',   left: '-22vw',  height: '15vh', width: '30vw' },
+    { top: '25vh',   left: '-26vw',  height: '22vh', width: '42vw' }, // Landscape 2 (larger)
     { top: '34vh',   left: '24vw',   height: '20vh', width: '38vw' },
   ];
 
