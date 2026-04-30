@@ -50,15 +50,13 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
     { top: '22.5vh',  left: '25vw',    height: '15vh', width: '15vw' },
   ];
 
-  const mobilePositions = [
-    { top: '-30vh',  left: '-10vw',  height: '20vh', width: '35vw' }, // Top left
-    { top: '-22vh',  left: '25vw',   height: '15vh', width: '30vw' }, // Top right
-    { top: '28vh',   left: '10vw',   height: '22vh', width: '45vw' }, // Bottom right
-  ];
+  // On mobile, the cleanest and most premium look is a single central video zooming in,
+  // without the distraction of cluttered surrounding images.
+  const mobilePositions = [];
 
   const positions = isMobile ? mobilePositions : desktopPositions;
-  const visibleImages = isMobile ? images.slice(0, 3) : images.slice(0, 6);
-  const thumbnailWidth = isMobile ? '75vw' : '25vw';
+  const visibleImages = isMobile ? [] : images.slice(0, 6);
+  const thumbnailWidth = isMobile ? '85vw' : '25vw';
 
   const enterFullscreen = () => {
     document.body.style.overflow = 'hidden';
