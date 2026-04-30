@@ -51,15 +51,14 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
   ];
 
   const mobilePositions = [
-    { top: '-28vh',  left: '0vw',    height: '22vh', width: '40vw' },
-    { top: '-5vh',   left: '-30vw',  height: '30vh', width: '28vw' },
-    { top: '-5vh',   left: '28vw',   height: '25vh', width: '28vw' },
-    { top: '25vh',   left: '0vw',    height: '22vh', width: '35vw' },
+    { top: '-30vh',  left: '-10vw',  height: '20vh', width: '35vw' }, // Top left
+    { top: '-22vh',  left: '25vw',   height: '15vh', width: '30vw' }, // Top right
+    { top: '28vh',   left: '10vw',   height: '22vh', width: '45vw' }, // Bottom right
   ];
 
   const positions = isMobile ? mobilePositions : desktopPositions;
-  const visibleImages = isMobile ? images.slice(0, 4) : images.slice(0, 6);
-  const thumbnailWidth = isMobile ? '55vw' : '25vw';
+  const visibleImages = isMobile ? images.slice(0, 3) : images.slice(0, 6);
+  const thumbnailWidth = isMobile ? '75vw' : '25vw';
 
   const enterFullscreen = () => {
     document.body.style.overflow = 'hidden';
