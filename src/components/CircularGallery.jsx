@@ -286,6 +286,7 @@ const CircularGallery = ({ items, radius = 600, autoRotateSpeed = 0.04 }) => {
                 <div className="circular-gallery-card-inner">
                   <video
                     src={item.video}
+                    poster={item.thumb}
                     muted
                     loop
                     playsInline

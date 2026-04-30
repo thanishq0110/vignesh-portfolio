@@ -43,46 +43,55 @@ const galleryItems = [
     title: 'Hidden Temple',
     subtitle: 'Environment Design',
     video: '/gallery/reel-01.mp4',
+    thumb: '/gallery/thumbs/reel-01.jpg',
   },
   {
     title: 'Horror Story',
     subtitle: 'Cinematic Sequence',
     video: '/gallery/reel-02.mp4',
+    thumb: '/gallery/thumbs/reel-02.jpg',
   },
   {
     title: 'Relaxing',
     subtitle: 'Ambient Scene',
     video: '/gallery/reel-03.mp4',
+    thumb: '/gallery/thumbs/reel-03.jpg',
   },
   {
     title: 'Last of Us',
     subtitle: 'Game Environment',
     video: '/gallery/reel-04.mp4',
+    thumb: '/gallery/thumbs/reel-04.jpg',
   },
   {
     title: 'Blade Runner 2045',
     subtitle: 'Sci-Fi Environment',
     video: '/gallery/reel-05.mp4',
+    thumb: '/gallery/thumbs/reel-05.jpg',
   },
   {
     title: 'Spiderman',
     subtitle: 'Character Animation',
     video: '/gallery/reel-06.mp4',
+    thumb: '/gallery/thumbs/reel-06.jpg',
   },
   {
     title: 'Batman',
     subtitle: 'Dark Knight Scene',
     video: '/gallery/reel-07.mp4',
+    thumb: '/gallery/thumbs/reel-07.jpg',
   },
   {
     title: 'Forest',
     subtitle: 'Environment Design',
     video: '/gallery/reel-08.mp4',
+    thumb: '/gallery/thumbs/reel-08.jpg',
   },
   {
     title: 'House',
     subtitle: 'Architecture Visualization',
     video: '/gallery/reel-09.mp4',
+    thumb: '/gallery/thumbs/reel-09.jpg',
   },
 ];
 
