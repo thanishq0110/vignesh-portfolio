@@ -138,14 +138,18 @@ const ZoomParallax = ({ videoSrc, thumbnailSrc, images }) => {
           transition={{ duration: 0.4 }}
           style={{
             position: 'fixed',
-            inset: 0,
-            width: '100vw',
-            height: '100vh',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: '100dvh', // Dynamic viewport height prevents hiding behind mobile UI
             backgroundColor: '#000',
             zIndex: 99999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            overflow: 'hidden',
+            touchAction: 'none', // Prevent swipe-to-scroll on mobile
           }}
         >
           <video
